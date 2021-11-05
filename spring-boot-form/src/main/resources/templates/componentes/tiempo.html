@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaft.org">
+
+<body>
+	<section th:fragment="interceptor">
+		<div class="alert alert-success" th:if="${tiempoTranscurrido != null}">
+			<span
+				th:text="${'Tiempo de carga: ' + tiempoTranscurrido + ' en milisegundos'}"></span>
+
+		</div>
+	</section>
+</body>
+</html>

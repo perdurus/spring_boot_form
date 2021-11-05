@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaft.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>-->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<section th:replace="componentes/tiempo :: interceptor"></section>
+	<div class="container">
+		<a th:href="@{/form}" class="btn btn-success my-3">Volver</a>
+		<ul class="list-group my-3">
+			<li th:text="${titulo}" class="list-group-item active"></li>
+			<li th:text="${usuario.nombre}" class="list-group-item"></li>
+			<li th:text="${usuario.apellido}" class="list-group-item"></li>
+			<li th:text="${usuario.username}" class="list-group-item"></li>
+			<li th:text="${usuario.password}" class="list-group-item"></li>
+			<li th:text="${usuario.email}" class="list-group-item"></li>
+			<li th:text="${usuario.identificador}" class="list-group-item"></li>
+			<li th:text="${usuario.cuenta}" class="list-group-item"></li>
+			<li
+				th:text="${'Pais: ' + usuario.pais.id + ' ' + usuario.pais.codigo + ' ' + usuario.pais.nombre}"
+				class="list-group-item"></li>
+			<li th:text="${#dates.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"
+				class="list-group-item"></li>
+			<li
+				th:text="${#calendars.format(usuario.fechaNacimiento, 'dd - MM - yyyy')}"
+				class="list-group-item"></li>
+			<li th:text="${usuario.habilitar}" class="list-group-item"></li>
+			<li th:text="${usuario.genero}" class="list-group-item"></li>
+			<li th:text="${usuario.valorSecreto}" class="list-group-item"></li>
+		</ul>
+
+		<ul class="list-group my-3">
+			<li class="list-group-item active">Roles</li>
+			<li th:each="role: ${usuario.roles}"
+				th:text="${role.id  + ' - ' + role.nombre + ' - ' + role.role}"
+				class="list-group-item"></li>
+		</ul>
+	</div>
+</body>
+</html>

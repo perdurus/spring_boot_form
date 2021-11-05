@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaft.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${titulo}"></title>
+</head>
+<body>
+
+	<h1 th:text="${titulo}"></h1>
+	<div>Pongo algo para saber que se actualiza</div>
+	<ul>
+		<li><a th:href="@{/variables/string/} + 'Hola Sergio'">Hola Sergio</a></li>
+		<li><a th:href="@{/variables/string/} + 'Otro texto'">Otro texto</a></li>
+		 
+		<li><a th:href="@{/variables/string/} + 'Hola Sergio ' + '/' + 5">Hola Sergio 5 </a></li>
+		<li><a th:href="@{/variables/string/} + 'Hola Amparo ' + '/' + 7">Hola Amparo 7</a></li>
+			
+	</ul>
+</body>
+</html>
