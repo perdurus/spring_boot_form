@@ -10,14 +10,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bolsadeideas.springboot.app.models.dao.IClienteJPADao;
+import com.bolsadeideas.springboot.app.models.dao.IFacturaDao;
+import com.bolsadeideas.springboot.app.models.dao.IProductoDao;
 import com.bolsadeideas.springboot.app.models.entity.Cliente;
+import com.bolsadeideas.springboot.app.models.entity.Factura;
+import com.bolsadeideas.springboot.app.models.entity.Producto;
 
 @Service
 @Repository("clienteService")
 public class ClienteServiceImpl implements IClienteService {
 
 	@Autowired
-	IClienteJPADao clienteDao;
+	private IClienteJPADao clienteDao;
+	
+	@Autowired
+	private IProductoDao productoDao;
+	
+	@Autowired
+	private IFacturaDao facturaDao;
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -49,4 +59,49 @@ public class ClienteServiceImpl implements IClienteService {
 		return this.clienteDao.findAll(pageable);
 	}
 
+	@Override
+	public List<Producto> findByNombre(String nombre) {
+		// TODO Auto-generated method stub
+		//return this.productoDao.findByNombre(nombre);
+		return this.productoDao.findByNombreLikeIgnoreCase("%" + nombre + "%");
+	}
+
+	@Override
+	@Transactional
+	public void saveFactura(Factura factura) {
+		
+		this.facturaDao.save(factura);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Producto findProductoById(Long id) {
+		
+		return this.productoDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Factura findFacturaById(Long id) {
+		return this.facturaDao.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public void deleteFactura(Long id) {
+		this.facturaDao.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Factura fetchFacturaByIdWithClienteWithItemFacturaWithProducto(Long id) {
+		return this.facturaDao.fetchByIdWithClienteWithItemFacturaWithProducto(id);
+	}
+
+	@Override
+	public Cliente fetchClienteByIdWithFacturas(Long id) {
+		return this.clienteDao.fetchByIdWithFacturas(id);
+	}
+
+	
 }
