@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaft.org">
+<head th:replace="layout/layout.html :: head"></head>
+<body>
+	
+	<header th:replace="layout/layout.html :: header"></header>
+	
+	<div class="container py-4">
+	
+		<div class="card bg-danger text-white">
+			<div class="card card-header">Error: Acceso denegado</div>
+			<div class="card card-body bg-danger">
+				<div class="card card-title bg-danger">
+					Lo sentimos <span th:text="${#authentication.name}"></span>, No tienes permisos para acceder a este recurso
+				</div>
+				<a th:href="@{/listar}" class="btn btn-outline-light text-black" role="button" > Ir a inicio</a>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout.html :: footer"></footer>
+</body>
+</html>	
