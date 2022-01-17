@@ -44,3 +44,10 @@ INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES(1, 1, 7);
 INSERT INTO facturas (descripcion, observacion, cliente_id, create_at) VALUES('Factura Bicicleta', 'Alguna nota importante!', 1, NOW());
 INSERT INTO facturas_items (cantidad, factura_id, producto_id) VALUES(3, 2, 6);
 
+/* Generamos unos usuarios*/
+
+insert into users (username, password, enable) VALUES('admin', '$2a$10$3o2iwSPWKywWO.VX7RV0AectIAPwXoc8f5AYcS65pDvspX3KOn0PO', 1);
+insert into users (username, password, enable) VALUES('sergio', '$2a$10$ck8lXPFUBTpr6B9H35kuQegKGhzXfH6b9o/vlcq8ud9Wpibo4BjlK', 1);
+insert into authorities (user_id, authority) values (2, 'ROLE_USER');
+insert into authorities (user_id, authority) values (1, 'ROLE_USER');
+insert into authorities (user_id, authority) values (1, 'ROLE_ADMIN');

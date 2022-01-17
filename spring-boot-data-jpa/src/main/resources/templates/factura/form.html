@@ -9,20 +9,20 @@
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
 				<h4 class="card-title">
-					<a th:href="@{/ver/} + ${factura.cliente.id}" class="btn btn-secondary btn-xs" th:text="'&laquo; volver'"></a>
+					<a th:href="@{/ver/} + ${factura.cliente.id}" class="btn btn-secondary btn-xs" th:utext="#{text.global.volver}"></a>
 				</h4>
 				
 				<form th:action="@{/factura/form}" th:object="${factura}" method="post">
 				
 					<div class="form-group row my-2">
-						<label class="col-sm-2 col-form-label">Cliente</label>
+						<label class="col-sm-2 col-form-label" th:text="#{text.factura.form.cliente}">Cliente</label>
 						<div class="col-sm-6">
 							<input type="text" th:placeholder="${factura.cliente.nombre} + ' ' + ${factura.cliente.apellido}" disabled class="form-control " />
 						</div>
 					</div>
 				
 					<div class="form-group row my-2">
-						<label for="descripcion" class="col-sm-2 col-form-label">Descripci&oacute;n</label>
+						<label for="descripcion" class="col-sm-2 col-form-label" th:text="#{text.cliente.factura.descripcion}">Descripci&oacute;n</label>
 						<div class="col-sm-6">
 							<input type="text" th:field="*{descripcion}" class="form-control" th:errorclass="'form-control is-invalid'" />
 							<div class="invalid-feedback" th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}"> </div>
@@ -30,14 +30,14 @@
 					</div>
 
 					<div class="form-group row my-2">
-						<label for="observacion" class="col-sm-2 col-form-label">Observaciones</label>
+						<label for="observacion" class="col-sm-2 col-form-label" th:text="#{text.factura.form.observacion}">Observaciones</label>
 						<div class="col-sm-6">
 							<textarea th:field="*{observacion}" class="form-control"></textarea> 
 						</div>
 					</div>
 					
 					<div class="form-group row my-2">
-						<label for="buscar_producto" class="col-sm-2 col-form-label">Buscar producto</label>
+						<label for="buscar_producto" class="col-sm-2 col-form-label" th:text="#{text.factura.form.buscar}">Buscar producto</label>
 						<div class="col-sm-6">
 							<input type="text" name="buscar_producto" id="buscar_producto" class="form-control"/> 
 						</div>
@@ -48,18 +48,18 @@
 					<table id="cargarItemProductos" class="table table-sm table-striped table-hover">
 						<thead>
 							<tr>
-								<th>Nombre</th>
-								<th>Precio</th>
-								<th>Cantidad</th>
-								<th>Total</th>
-								<th>Eliminar</th>
+								<th th:text="#{text.factura.form.item.nombre}">Nombre</th>
+								<th th:text="#{text.factura.form.item.precio}">Precio</th>
+								<th th:text="#{text.factura.form.item.cantidad}">Cantidad</th>
+								<th th:text="#{text.factura.form.item.total}">Total</th>
+								<th th:text="#{text.factura.form.item.eliminar}">Eliminar</th>
 							</tr>
 						</thead>
 						<tbody></tbody>
 					</table>
 					
 					<h5>
-						<span class="badge bg-secondary">Total:
+						<span class="badge bg-secondary" th:text="#{text.factura.form.total}">Total:
 							<span id="gran_total">0</span>
 						</span>
 					</h5>	
