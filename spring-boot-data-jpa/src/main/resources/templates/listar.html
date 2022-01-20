@@ -14,6 +14,9 @@
 
 				<h4 class="card-title">
 					<a class="btn btn-primary btn-xs" th:href="@{/form}" sec:authorize="hasRole('ROLE_ADMIN')" th:text="#{text.menu.customer.new}">Alta Clientes</a>
+					<a th:href="@{'/listar'(format=csv)}" class="btn btn-xs btn-success ml-auto">CSV</a>
+					<a th:href="@{'/listar'(format=xml)}" class="btn btn-xs btn-outline-success ml-auto">XML</a>
+					<a th:href="@{'/listar'(format=json)}" class="btn btn-xs btn-outline-warning ml-auto">JSON</a>
 				</h4>
 				<table class="table table-striped">
 					<thead>

@@ -2,10 +2,9 @@ package com.bolsadeideas.springboot.app;
 
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -17,7 +16,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer{
 
-	private final Logger log = LoggerFactory.getLogger(getClass());
+	//private final Logger log = LoggerFactory.getLogger(getClass());
 	
 //	@Override
 //	public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -70,4 +69,12 @@ public class MvcConfig implements WebMvcConfigurer{
 	}
 	
 	
+	@Bean
+	public Jaxb2Marshaller jaxb2Marshaller () {
+		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+		
+		marshaller.setClassesToBeBound(new Class[] {com.bolsadeideas.springboot.app.view.xml.ClienteList.class});
+		
+		return marshaller;
+	}
 }

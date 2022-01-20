@@ -12,7 +12,11 @@
 			<div class="card-header" th:text="${titulo}"></div>
 			<div class="card-body">
 
-				<h4 class="card-title"><a th:href="@{'/ver/' + ${factura.cliente.id}}" class="btn btn-xs btn-primary" th:utext="#{text.global.volver}" >&laquo; Volver</a></h4>
+				<h4 class="card-title">
+					<a th:href="@{'/ver/' + ${factura.cliente.id}}" class="btn btn-xs btn-primary" th:utext="#{text.global.volver}" >&laquo; Volver</a>
+					<a th:href="@{'/factura/ver/' + ${factura.id}(format=pdf)}" class="btn btn-xs btn-danger ml-auto mx-2">PDF</a>
+					<a th:href="@{'/factura/ver/' + ${factura.id}(format=xlsx)}" class="btn btn-xs btn-success ml-auto">XLSX</a>
+				</h4>
 				
 				<ul class="list-group my-2">
 					<li th:text="#{text.factura.ver.datos.cliente}" class="list-group-item list-group-item-primary"></li>

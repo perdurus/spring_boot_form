@@ -2,6 +2,7 @@ package com.bolsadeideas.springboot.app.controllers;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -36,6 +37,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -45,6 +47,7 @@ import com.bolsadeideas.springboot.app.models.entity.Cliente;
 import com.bolsadeideas.springboot.app.services.IClienteService;
 import com.bolsadeideas.springboot.app.services.IUploadFileService;
 import com.bolsadeideas.springboot.app.util.paginator.PageRender;
+import com.bolsadeideas.springboot.app.view.xml.ClienteList;
 
 @Controller
 @SessionAttributes("cliente")
@@ -304,5 +307,18 @@ public class ClienteController {
 		return false;*/
 		
 		return authorities.contains(new SimpleGrantedAuthority(role));
+	}
+	
+	
+	@GetMapping(value="/listar-rest")
+	@ResponseBody
+	public List<Cliente> listarRest() {
+		return this.clienteService.findAll();
+	}
+	
+	@GetMapping(value="/listar-rest-xml")
+	@ResponseBody
+	public ClienteList listarRestXml() {
+		return new ClienteList(this.clienteService.findAll());
 	}
 }
